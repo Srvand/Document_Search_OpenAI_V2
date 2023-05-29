@@ -1,0 +1,6 @@
+docx
+haystack
+pdfplumber
+openai
+python-docx
+farm-haystack[all]
