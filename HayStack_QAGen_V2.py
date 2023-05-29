@@ -62,10 +62,10 @@ uploaded_files = st.file_uploader("Upload Files", accept_multiple_files=True)
 if uploaded_files:
     for file in uploaded_files:
         add_document(document_store, file)
-document_store.write_documents(documents)
+    document_store.write_documents(documents)
 # display number of documents in document store
 # st.write(f"Number of documents uploaded to document store: {document_store.get_document_count()}")#Update V2
-st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>Number of documents uploaded to document store: {document_store.get_document_count()}</p>", unsafe_allow_html=True)
+    st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>Number of documents uploaded to document store: {document_store.get_document_count()}</p>", unsafe_allow_html=True)
 
 if (document_store.get_document_count()!=0):
     # question = st.text_input('Ask a question') #Update V2
