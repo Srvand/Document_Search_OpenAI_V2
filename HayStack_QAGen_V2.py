@@ -44,8 +44,16 @@ def add_document(document_store, file):
     
 # create Streamlit app
 st.set_page_config(page_title='Contextualized Search for Document Archive',layout="wide")#Update V2
-st.title("Contextualized Search for Document Archive")
-
+st.write("""
+    <style>
+        footer {visibility: hidden;}
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+""", unsafe_allow_html=True)#Update V2
+# st.title("Contextualized Search for Document Archive")#Update V2
+st.write(f"<h1 style='font-size: 36px; color: #00555e; font-family: Arial;text-align: center;'>Contextualized Search for Document Archive using OpenAI</h1>", unsafe_allow_html=True)
 API_KEY = st.secrets['OPENAI_API_KEY']
 # create file uploader
 uploaded_files = st.file_uploader("Upload Files", accept_multiple_files=True)
@@ -56,10 +64,13 @@ if uploaded_files:
         add_document(document_store, file)
 document_store.write_documents(documents)
 # display number of documents in document store
-st.write(f"Number of documents uploaded to document store: {document_store.get_document_count()}")
+# st.write(f"Number of documents uploaded to document store: {document_store.get_document_count()}")#Update V2
+st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>Number of documents uploaded to document store: {document_store.get_document_count()}</p>", unsafe_allow_html=True)
 
 if (document_store.get_document_count()!=0):
-    question = st.text_input('Ask a question')
+    # question = st.text_input('Ask a question') #Update V2
+    st.write(f"<p style='font-size: 16px; color: red;font-family: Arial;'>Ask a question:</p>",unsafe_allow_html=True)
+    question = st.text_input(label='Ask a question:',label_visibility="collapsed")
     retriever = TfidfRetriever(document_store=document_store)
      # QA pipeline using prompt node 
     if question != '':  
@@ -88,10 +99,10 @@ if (document_store.get_document_count()!=0):
         if output:
             answer = output[0].answer
             if(answer==' No relevant information present in attached documents.'):#Update V2
-                st.write('No document found with relevant context')#Update V2
+                st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>No document found with relevant context.</p>",unsafe_allow_html=True)#Update V2
             else:
-                st.write('Source document:', {candidate_documents[0].meta['name']})#Update V2
-                st.write('Answer:', {answer})#Update V2
+                st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>Source document: {candidate_documents[0].meta['name']}</p>",unsafe_allow_html=True)
+                st.write(f"<p style='font-size: 16px; color: #00555e;font-family: Arial;'>Answer: {answer}</p>",unsafe_allow_html=True)
         else:
             st.write('Please try with another question')
     
