@@ -4,3 +4,4 @@ pdfplumber
 openai
 python-docx
 farm-haystack[all]
+protobuf==3.20.1
