@@ -4,12 +4,8 @@ import docx
 import haystack
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import BM25Retriever,TfidfRetriever,PromptNode, PromptTemplate
-from haystack.nodes import FARMReader,TransformersReader
 from haystack.pipelines import ExtractiveQAPipeline,DocumentSearchPipeline,GenerativeQAPipeline,Pipeline
-from haystack.utils import print_answers
-from haystack.pipelines.standard_pipelines import TextIndexingPipeline
 from haystack import Document
-from haystack.utils import print_answers
 import pdfplumber
 from haystack.nodes import OpenAIAnswerGenerator
 from haystack.nodes.prompt import PromptTemplate
