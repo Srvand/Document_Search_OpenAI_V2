@@ -81,7 +81,7 @@ if (document_store.get_document_count()!=0):
             "If the question cannot be answered from the context, reply with 'No relevant information present in attached documents\n"
             "Context: {join(documents, delimiter=new_line, pattern=new_line+'Document[$idx]: $content', str_replace={new_line: ' ', '[': '(', ']': ')'})} \n Question: {query}; Answer: ")  
         
-        candidate_documents = retriever.retrieve(query=question,top_k=2)
+        candidate_documents = retriever.retrieve(query=question,top_k=3)
 
         prompt_node = PromptNode("gpt-3.5-turbo-16k", api_key=API_KEY)
         output=prompt_node.prompt(prompt_template=my_template, query=question, documents=candidate_documents)
